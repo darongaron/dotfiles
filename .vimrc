@@ -1,32 +1,14 @@
-set nocompatible " vi 互換をオフにする
-set wildmode=longest:full,list " コマンドモードでの補完設定
-
-"文字コード関係
-set encoding=utf-8
-set fileencodings=utf-8,ucs-bom,iso-2022-jp,cp932,euc-jp,default,latin
-set fileencoding=utf-8
-set fileformat=unix
-
-set number "行番号の表示
-set backupdir=$HOME/vimbackup "バックアップファイルのディレクトリを指定する
-
-set expandtab "タブ入力のスペース置き換え
-set tabstop=2 "タブ文字の文字数
-set shiftwidth=2 "追加タブ幅
-set softtabstop=2 "タブキー・バックスペースキー幅
-set autoindent "改行時のインデント継続
-set smartindent "改行時インデント自動増減
-
-"NeoBundle Scripts-----------------------------
+"NeoBundle Scripts-------------------------------
 if has('vim_starting')
   set nocompatible               " Be iMproved
 
   " Required:
-  set runtimepath+=/Users/dafinel/.vim/bundle/neobundle.vim/
+  set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
+  
 endif
 
 " Required:
-call neobundle#begin(expand('/Users/dafinel/.vim/bundle'))
+call neobundle#begin(expand('$HOME/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -60,13 +42,8 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
-"End NeoBundle Scripts-------------------------
-
-let g:user_emmet_settings = {
-\   'lang' : 'ja'
-\ }
-
-"Start Neocomplcache---------------------------
+"End NeoBundle Scripts---------------------------
+"Neocomplcache Scripts---------------------------
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
@@ -153,9 +130,43 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"End Neocomplcache---------------------------
+"End Neocomplcache Scripts------------------------
+"Scripts setting----------------------------------
+let g:user_emmet_settings = { 'lang' : 'ja' }
 
 autocmd FileType javascript
   \ :setl omnifunc=jscomplete#CompleteJS
 :let g:jscomplete_use = ['dom', 'moz'] " => autoload/js/dom.vim と autoload/js/moz.vim が読まれる
+"End scripts setting------------------------------
+"全角空白を強調表示-------------------------------
+augroup highlightDoubleByteSpace
+  autocmd!
+  autocmd VimEnter,Colorscheme * highlight DoubleByteSpace term=underline ctermbg=LightMagenta guibg=LightMagenta
+  autocmd VimEnter,WinEnter,BufRead * match DoubleByteSpace /　/
+augroup END
+"全角空白を強調表示 END---------------------------
+
+set nocompatible " vi 互換をオフにする
+set wildmode=longest:full,list " コマンドモードでの補完設定
+
+set number "行番号の表示
+set visualbell
+set backupdir=$HOME/.vimbackup "バックアップファイルのディレクトリを指定する
+set directory=$HOME/.vimbackup
+"set list "改行可視化
+set formatoptions=q "自動改行オフ
+"set cursorline
+
+set encoding=utf-8
+set fileencodings=utf-8,ucs-bom,iso-2022-jp,cp932,euc-jp,default,latin
+set fileencoding=utf-8
+set fileformat=unix
+
+set expandtab "タブ入力のスペース置き換え
+set tabstop=2 "タブ文字の文字数
+set shiftwidth=2 "追加タブ幅
+set softtabstop=2 "タブキー・バックスペースキー幅
+set autoindent "改行時のインデント継続
+set smartindent "改行時インデント自動増減
+set expandtab "タブ入力を複数の空白入力に置き換える
 
