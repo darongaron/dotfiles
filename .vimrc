@@ -1,4 +1,4 @@
-set nocompatible " vi 互換をオフにする
+"set nocompatible " vi 互換をオフにする
 set wildmode=longest:full,list " コマンドモードでの補完設定
 
 "文字コード関係
@@ -16,6 +16,9 @@ set shiftwidth=2 "追加タブ幅
 set softtabstop=2 "タブキー・バックスペースキー幅
 set autoindent "改行時のインデント継続
 set smartindent "改行時インデント自動増減
+set backupdir=$HOME/.vim_tmp "バックアップファイルのディレクトリを指定する
+set directory=$HOME/.vim_tmp
+set undodir=$HOME/.vim_tmp
 
 "NeoBundle Scripts-----------------------------
 if has('vim_starting')
@@ -47,6 +50,9 @@ NeoBundle 'simple-javascript-indenter'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'mattn/jscomplete-vim'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'slim-template/vim-slim'
+
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
