@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/daron'
-let g:netrw_dirhist_2='/Users'
-let g:netrw_dirhist_3='/'
-let g:netrw_dirhist_4='/usr'
-let g:netrw_dirhist_5='/usr/bin'
-let g:netrw_dirhist_6='/Users/daron/memo/go'
-let g:netrw_dirhist_7='/Users/daron'
