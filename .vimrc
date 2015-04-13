@@ -93,7 +93,7 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Go (plugin: gocode)
-let g:neocomplete#sources#omni#functions.go = 'gocomplete#Complete'
+"let g:neocomplete#sources#omni#functions.go = 'gocomplete#Complete'
 
 "ruby
 
