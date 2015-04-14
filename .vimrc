@@ -1,12 +1,12 @@
-"set nocompatible " vi 互換をオフにする
-set wildmode=longest:full,list " コマンドモードでの補完設定
-
-"文字コード関係
 set encoding=utf-8
+scriptencoding utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp,cp932,euc-jp,default,latin
 set fileencoding=utf-8
 set fileformat=unix
-scriptencoding utf-8
+
+augroup vimrc "autocmd初期化
+  autocmd!
+augroup END
 
 "NeoBundle Scripts-------------------------------
 if has('vim_starting')
@@ -21,20 +21,20 @@ call neobundle#begin(expand('$HOME/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
-NeoBundle 'tpope/vim-fugitive' " vimでgit
+"NeoBundle 'tpope/vim-fugitive' " vimでgit
 NeoBundle 'kien/ctrlp.vim' " Full path fuzzy file, buffer, mru, tag, ... finder
-NeoBundle 'scrooloose/nerdtree' " A tree explorer plugin for vim.
-NeoBundle 'majutsushi/tagbar' " a class outline viewer
-NeoBundle 'Shougo/vimfiler' " Powerful file explorer implemented by Vim script
+"NeoBundle 'scrooloose/nerdtree' " A tree explorer plugin for vim.
+"NeoBundle 'majutsushi/tagbar' " a class outline viewer
+"NeoBundle 'Shougo/vimfiler' " Powerful file explorer implemented by Vim script
 NeoBundle 'Shougo/vimproc.vim', {'build' : {'mac' : 'make -f make_mac.mak'}}
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
+"NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'Shougo/unite-outline'
 NeoBundle 'justinmk/vim-dirvish' " A VINE-spired (Vim Is Not Emacs) file system explorer. 
 
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'Yggdroot/indentLine' "インデントをわかりやすく表示
-NeoBundle 'tpope/vim-abolish' "検索・置換を便利にする
+"NeoBundle 'flazz/vim-colorschemes'
+"NeoBundle 'jpo/vim-railscasts-theme'
+"NeoBundle 'Yggdroot/indentLine' "インデントをわかりやすく表示
+"NeoBundle 'tpope/vim-abolish' "検索・置換を便利にする
 
 "snipppet""""""""""""
 NeoBundle 'Shougo/neocomplete.vim' "スニペットの補完
@@ -52,9 +52,9 @@ NeoBundle 'mattn/jscomplete-vim' "JavaScript complete script
 
 "go""""""""""""
 NeoBundle 'dgryski/vim-godef'
-NeoBundle 'vim-jp/vim-go-extra'
 "NeoBundle 'google/vim-ft-go' " vim-ft-goは最新版のvimを使えない場合のみ
-set rtp^=$GOPATH/src/github.com/nsf/gocode/vim"
+NeoBundle 'vim-jp/vim-go-extra'
+set runtimepath'^=$GOPATH/src/github.com/nsf/gocode/vim"
 
 "slim""""""""""""
 NeoBundle 'slim-template/vim-slim' "slim syntax highlighting for vim.
@@ -69,6 +69,9 @@ let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
 let g:neocomplete#enable_smart_case = 1 " Use smartcase.
 let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
 let g:neocomplete#lock_iminsert = 1 "If this variable is non-zero, neocomplete locks when 'iminsert' is non-zero.
+" Go (plugin: gocode)
+"let g:neocomplete#sources#omni#functions.go = 'gocomplete#Complete'
+"let g:neocomplete#sources#omni#input_patterns.go = '\h\w\.\w*' "neocompleteで自動補完
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -92,8 +95,6 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Go (plugin: gocode)
-"let g:neocomplete#sources#omni#functions.go = 'gocomplete#Complete'
 
 "ruby
 
@@ -200,7 +201,8 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 """"	let g:neocomplete#force_omni_input_patterns.ruby =
 """"	\ '[^. *\t]\.\w*\|\h\w*::'
 
-""""""""""
+
+command! Nct :NeoCompleteToggle
 "End Neocomplete Scripts------------------------
 
 "Scripts setting----------------------------------
@@ -214,34 +216,35 @@ autocmd FileType javascript
 "End scripts setting------------------------------
 
 
-
+set tags=./tags;
+set wildmenu wildmode=list:longest,full "コマンドラインモードでTABキーによるファイル名補完を有効にする
 set clipboard+=unnamed "ヤンクのときにクリップボードにもコピー
 set number "行番号の表示
-set wildmode=longest:full,list " コマンドモードでの補完設定
+set wildmode=longest:full,full " コマンドモードでのtabキー補完
 
-set visualbell
+set visualbell "音が鳴らないように
 set backupdir=$HOME/.vim_tmp
 set directory=$HOME/.vim_tmp
 set undodir=$HOME/.vim_tmp
 "set list "改行可視化
 set formatoptions=q "自動改行オフ
-"set cursorline
 
-set expandtab "タブ入力のスペース置き換え
-set tabstop=2 "タブ文字の文字数
-set shiftwidth=2 "追加タブ幅
-set softtabstop=2 "タブキー・バックスペースキー幅
-set autoindent "改行時のインデント継続
-set smartindent "改行時インデント自動増減
-"set expandtab "タブ入力を複数の空白入力に置き換える
+set expandtab       "タブ入力のスペース置き換え
+set tabstop=2       "タブ文字の文字数
+set shiftwidth=2    "追加タブ幅
+set softtabstop=2   "タブキー・バックスペースキー幅
+set autoindent      "改行時のインデント継続
+set smartindent     "改行時インデント自動増減
 
-" for golang {{{
+"""golang
 set path+=$GOPATH/src/**
 let g:gofmt_command = 'goimports'
-au BufWritePre *.go Fmt
-au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 completeopt=menu,preview
-au FileType go compiler go
-" }}}
+autocmd BufWritePre *.go Fmt
+autocmd BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 completeopt=menu,preview
+autocmd FileType go compiler go
+autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+autocmd FileType go :match goErr /\<err\>/
+"""
 
 colorscheme desert
 syntax on
