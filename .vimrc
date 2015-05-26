@@ -44,6 +44,7 @@ NeoBundle 'justinmk/vim-dirvish' " A VINE-spired (Vim Is Not Emacs) file system 
 "html""""""""""""
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'ap/vim-css-color'
 
 "js""""""""""""
 NeoBundle 'simple-javascript-indenter'
@@ -214,6 +215,23 @@ autocmd FileType javascript
 
 
 "End scripts setting------------------------------
+"Kobito setting----------------------------------
+function! s:open_kobito(...)
+    if a:0 == 0
+        call system('open -a Kobito '.expand('%:p'))
+    else
+        call system('open -a Kobito '.join(a:000, ' '))
+    endif
+endfunction
+
+" 引数のファイル(複数指定可)を Kobitoで開く
+" （引数無しのときはカレントバッファを開く
+command! -nargs=* Kobito call s:open_kobito(<f-args>)
+" Kobito を閉じる
+command! -nargs=0 KobitoClose call system("osascript -e 'tell application \"Kobito\" to quit'")
+" Kobito にフォーカスを移す
+command! -nargs=0 KobitoFocus call system("osascript -e 'tell application \"Kobito\" to activate'")
+"End Kobito setting----------------------------------
 
 set tags=./tags;
 set wildmenu wildmode=list:longest,full "コマンドラインモードでTABキーによるファイル名補完を有効にする
