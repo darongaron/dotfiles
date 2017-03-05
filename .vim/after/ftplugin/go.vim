@@ -1,4 +1,5 @@
 let g:gofmt_command = 'goimports' " :Fmt などで gofmt の代わりに goimports を使う
+autocmd BufWritePre <buffer> Fmt
 autocmd BufWritePre *.go Fmt " 保存時(バッファ全体をファイルに書き込むとき)に :Fmt する
 set shiftwidth=4
 set noexpandtab
