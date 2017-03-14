@@ -34,6 +34,7 @@ go get -u github.com/rogpeppe/godef
 go get -u github.com/nsf/gocode
 go get -u golang.org/x/tools/cmd/goimports
 go get -u github.com/jstemmer/gotags
+go get -u github.com/golang/lint/golint
 ```
 
 
@@ -44,5 +45,7 @@ go get -u -ldflags -H=windowsgui golang.org/x/tools/cmd/goimports
 go get -u -ldflags -H=windowsgui github.com/rogpeppe/godef
 go get -u -ldflags -H=windowsgui github.com/nsf/gocode
 go get -u -ldflags -H=windowsgui github.com/jstemmer/gotags
+go get -u -ldflags -H=windowsgui github.com/golang/lint/golint
+
 ```
 
