@@ -4,8 +4,12 @@ dotfiles
 Installation
 ------------
 
+以下をインストールする
+
 * [Homebrew](https://brew.sh/index_ja.html)
 * [MacVim-KaoriYa](https://github.com/splhack/macvim-kaoriya)
+
+ターミナルで下記を実行
 
 ```sh
 $ git clone https://github.com/darongaron/dotfiles.git $HOME/.dotfiles
@@ -23,6 +27,26 @@ go
 ```
 brew install go --with-cc-common
 ```
+
+### windows
+
+以下をインストールする
+
+* [Vim-KaoriYa](https://www.kaoriya.net/software/vim/)
+* [git](https://git-scm.com/)
+
+コマンドプロンプトで以下を実行
+
+```cmd
+git clone https://github.com/darongaron/dotfiles.git %USERPROFILE%/.dotfiles
+copy .dotfiles\.vimrc %USERPROFILE%\
+copy .dotfiles\.gvimrc %USERPROFILE%\
+xcopy /I /H /E .dotfiles\.vim %USERPROFILE%\vimfiles
+git clone https://github.com/Shougo/dein.vim $HOME/.vim/bundles/repos/github.com/Shougo/dein.vim
+mkdir %USERPROFILE%\.vim_tmp
+```
+
+
 
 ### 開発ツール
 
