@@ -35,11 +35,6 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'tyru/eskk.vim'
-  " Plug 'neoclide/coc.nvim'
-  "Plug 'autozimu/LanguageClient-neovim', {
-  "  \ 'branch': 'next',
-  "  \ 'do': 'bash install.sh',
-  "  \ }
 call plug#end()
 
 "Scripts setting----------------------------------
@@ -50,19 +45,6 @@ let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-lists', 'coc-pyt
 """:let g:jscomplete_use = ['dom', 'moz'] " => autoload/js/dom.vim と autoload/js/moz.vim が読まれる
 " Required for operations modifying multiple buffers like rename.
 
-"let g:LanguageClient_serverCommands = {
-"    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-"    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-"    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-"    \ 'python': ['/usr/local/bin/pyls'],
-"    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-"    \ }
-
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" " Or map each action separately
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 "End scripts setting------------------------------
 
 " set tags=./tags;
