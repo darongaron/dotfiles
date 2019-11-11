@@ -45,7 +45,9 @@ xcopy /I /H /E .dotfiles\.vim %USERPROFILE%\vimfiles
 git clone https://github.com/Shougo/dein.vim $HOME/.vim/bundles/repos/github.com/Shougo/dein.vim
 mkdir %USERPROFILE%\.vim_tmp
 ```
-
+```cmd
+>mklink /H %USERPROFILE%\.vimrc %USERPROFILE%\dotfiles\.vimrc_win.vim
+```
 
 
 ### 開発ツール
