@@ -60,15 +60,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'tyru/eskk.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " Plug 'neoclide/coc.nvim'
-    " Plug 'autozimu/LanguageClient-neovim', {
-    "    \ 'branch': 'next',
-    "    \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
-    "    \ }
     Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
     Plug 'junegunn/fzf.vim'
     " Plug '/ProgramData/chocolatey/bin'
-    " Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     " Plug 'nelsyeung/twig.vim'
@@ -81,101 +75,12 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 "add plubin start-------------
-"if executable('javascript-typescript-stdio')
-"else
-"  echo "javascript-typescript-stdio not installed!\n"
-"  :cq
-"endif
-
-" let g:LanguageClient_autoStart = 0
-" let g:LanguageClient_diagnosticsDisplay = {
-"     \  1: { "signText": "x" },
-"     \  2: { "signText": "!" },
-"     \  3: { "signText": "i" },
-"     \  4: { "signText": ">" },
-"     \ }
-
-"\ 'javascript': ['node', 'javascript-typescript-stdio.cmd']
-"let g:LanguageClient_serverCommands = {
-"    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-"    \ 'go': ['go-langserver'],
-"    \ 'javascript': ['node', $HOME.'\AppData\Roaming\npm\node_modules\javascript-typescript-langserver\lib\language-server-stdio']
-"    \ 'javascript': ['node', $HOME.'\AppData\Roaming\npm\node_modules\javascript-typescript-langserver\lib\language-server-stdio']
-" C:\Users\藤田明良\AppData\Roaming\npm\javascript-typescript-langserver -> C:\Users\藤田明良\AppData\Roaming\npm\node_modules\javascript-typescript-langserver\lib\language-server.js
-" C:\Users\藤田明良\AppData\Roaming\npm\javascript-typescript-stdio -> C:\Users\藤田明良\AppData\Roaming\npm\node_modules\javascript-typescript-langserver\lib\language-server-stdio.js
-"php vendor/felixfbecker/language-server/bin/php-language-server.php
-"C:\Users\藤田明良\AppData\Roaming\Composer\vendor\felixfbecker\language-server\bin>
-" let g:LanguageClient_rootMarkers = {
-"     \ 'go': ['.git', 'go.mod'],
-"     \ }
-"\ 'php': ['php', $HOME.'\AppData\Roaming\Composer\vendor\felixfbecker\language-server\bin\php-language-server.php'],
-"\ 'go': ['tcp://localhost:4389'],
-    "\ 'go': ['golsp'],
-    "\ 'go': ['go-langserver', '-func-snippet-enabled', '-gocodecompletion', '-format-tool', 'gofmt', '-lint-tool', 'golint'],
-    "\ 'go': ['golsp'],
-    "\ 'go': ['bingo', '-mode', 'stdio', '-cache-style', 'always', '-logfile','bingo.log'],
-"    \ 'typescript': ['node', $HOME.'\AppData\Roaming\npm\node_modules\javascript-typescript-langserver\lib\language-server-stdio'],
-"    \ 'javascript': ['node', $HOME.'\AppData\Roaming\npm\node_modules\javascript-typescript-langserver\lib\language-server-stdio'],
-
-" let g:LanguageClient_serverCommands = {
-"     \ 'typescript': ['node', $HOME . '\scoop\apps\nodejs8\current\bin\node_modules\javascript-typescript-langserver\lib\language-server-stdio'],
-"     \ 'javascript': ['node', $HOME . '\scoop\apps\nodejs8\current\bin\node_modules\javascript-typescript-langserver\lib\language-server-stdio'],
-"     \ 'php': ['php', 'C:\Users\f\AppData\Roaming\Composer\vendor\felixfbecker\language-server\bin\php-language-server.php'],
-"     \ 'python': ['pyls'],
-"     \ 'go': ['go-langserver', '-func-snippet-enabled', '-gocodecompletion', '-format-tool', 'gofmt', '-lint-tool', 'golint'],
-"     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-"     \ }
-
-"let g:LanguageClient_loggingLevel = 'DEBUG'
-"K			カーソル位置のキーワードを調べるためのプログラムを実行
-"keywordprg'
-" function LC_maps()
-"   if has_key(g:LanguageClient_serverCommands, &filetype)
-"     nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-"     "nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-"     nnoremap K :call LanguageClient#textDocument_hover()<CR>
-"     "set keywordprg=:call LanguageClient#textDocument_hover()
-"     "set keywordprg=:call LanguageClient#textDocument_hover()
-"     "gd			ローカル宣言を検索します。
-"     "nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-"     nnoremap gd :call LanguageClient#textDocument_definition()<CR>
-"     set completefunc=LanguageClient#complete
-"     set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
-"     "nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-"     nnoremap <F2> :call LanguageClient#textDocument_rename()<CR>
-"     "let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-"     "let g:ctrlp_cache_dir = $HOME.'/.vim_tmp/ctrlp'
-"     "add plubin end-------------
-"   endif
-" endfunction
-
-" augroup LangClient
-"   autocmd!
-"   autocmd LangClient FileType * call LC_maps()
-" augroup END
-
 
 "fzf
 nnoremap <C-p> :Files<CR>
-"deo
-""let g:deoplete#enable_at_startup = 1
-" call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-" call deoplete#custom#source('LanguageClient-neovim', 'matchers', ['matcher_full_fuzzy'])
-" call deoplete#custom#option('on_insert_enter', v:false)
-" call deoplete#custom#option('ignore_sources', {
-"       \'_': ['buffer'],
-"       \'LanguageClient-neovim': ['buffer']
-"       \})
 set completeopt=noinsert,menuone,noselect,preview
 "set completeopt+=noinsert
 "set completeopt+=preview
-
-" function g:Multiple_cursors_before()
-"   call deoplete#custom#buffer_option('auto_complete', v:false)
-" endfunction
-" function g:Multiple_cursors_after()
-"   call deoplete#custom#buffer_option('auto_complete', v:true)
-" endfunction
 
 
 "set tags=./tags;
