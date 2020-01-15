@@ -1,6 +1,7 @@
 set encoding=utf-8
 scriptencoding utf-8
-set fileencodings=cp932,iso-2022-jp,ucs-bom,euc-jp,utf-8,default,latin,utf16le
+"set fileencodings=cp932,iso-2022-jp,ucs-bom,euc-jp,utf-8,default,latin,utf16le
+set fileencodings=utf-8,cp932,iso-2022-jp,ucs-bom,euc-jp,default,latin,utf16le
 set fileencoding=utf-8
 set fileformats=unix,mac,dos
 set fileformat=unix
@@ -46,10 +47,6 @@ let g:eskk#dictionary = {'path': '~/.eskk/skk','sorted': 0,'encoding': 'utf-8'}
 let g:eskk#large_dictionary = {'path': '~/.eskk/SKK-JISYO.L','sorted': 1,'encoding': 'utf-8'}
 " end eskk ----------
 
-set rtp+=~/.fzf
-"set pyxversion=3
-"set pythonthreedll=$HOME\scoop\apps\python35\3.5.4\python35.dll
-"let g:python3_host_prog = $HOME."python35"
 "
 "augroup vimrc "autocmd初期化2重実行対策
 "  autocmd!
@@ -63,8 +60,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
     Plug 'junegunn/fzf.vim'
     " Plug '/ProgramData/chocolatey/bin'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+    "Plug 'roxma/nvim-yarp'
+    "Plug 'roxma/vim-hug-neovim-rpc'
     " Plug 'nelsyeung/twig.vim'
     Plug 'evidens/vim-twig'
     Plug 'leafgarland/typescript-vim'
