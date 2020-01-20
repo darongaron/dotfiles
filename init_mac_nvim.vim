@@ -1,8 +1,9 @@
 set encoding=utf-8
 scriptencoding utf-8
-set fileencodings=utf-8,ucs-bom,iso-2022-jp,cp932,euc-jp,default,latin
 set fileencoding=utf-8
+set fileencodings=utf-8,cp932,,iso-2022-jp,ucs-bom,euc-jp,default,latin,utf16le
 set fileformat=unix
+set helplang=ja,en
 
 " coc ---------
 set hidden
@@ -34,7 +35,7 @@ call plug#begin()
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'tyru/eskk.vim'
+  "Plug 'tyru/eskk.vim'
 call plug#end()
 
 "Scripts setting----------------------------------
@@ -70,5 +71,7 @@ set smartindent     "改行時インデント自動増減
 "autocmd FileType go autocmd BufWritePre <buffer> Fmt
 "setlocal omnifunc=syntaxcomplete#Complete
 
+"set termguicolors
+"autocmd ColorScheme * highlight Pmenu guibg=#b4009e
 colorscheme desert
 syntax on
