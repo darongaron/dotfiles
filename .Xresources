@@ -1,0 +1,57 @@
+!! ================================================================
+!! Xterm
+!! ================================================================
+
+!! General
+XTerm*termName: xterm-256color
+!XTerm*scrollBar: False
+!XTerm*cursorBlink: True
+
+!! Fonts and Encoding
+XTerm*utf8: True
+XTerm*locale: True
+XTerm*utf8Title: True
+!XTerm*faceName: xft:DejaVu Sans Mono
+!XTerm*faceNameDoublesize: xft:IPAGothic
+!XTerm*faceSize: 9
+!XTerm*scaleHeight: 1.08
+xterm*ximFont: -misc-fixed-medium-r-normal--14-130-75-75-c-140-jisx0208.1983-0
+
+!! Color Scheme : Tomorrow Night
+!! https://github.com/chriskempson/tomorrow-theme
+
+XTerm*background: #000000
+XTerm*foreground: #EAEAEA
+XTerm*cursorColor: #EAEAEA
+
+! Black / Grey
+XTerm*color0: #000000
+XTerm*color8: #666666
+
+! Red / Bright Red
+XTerm*color1: #D54E53
+XTerm*color9: #FF3334
+
+! Green + Bright Green
+XTerm*color2: #B9CA4A
+XTerm*color10: #9EC400
+
+! Yellow (Orange) + Bright Yellow (Yellow)
+XTerm*color3: #E78C45
+XTerm*color11: #E7C547
+
+! Blue + Bright Blue
+XTerm*color4: #7AA6DA
+XTerm*color12: #7AA6DA
+
+! Magenta (Purple) + Bright Magenta
+XTerm*color5: #C397D8
+XTerm*color13: #B777E0
+
+! Cyan (Aqua) + Bright Cyan
+XTerm*color6: #70C0B1
+XTerm*color14: #54CED6
+! Light Grey (Selection) + White (Current Line)
+XTerm*color7: #424242
+XTerm*color15: #2A2A2A
+
