@@ -71,7 +71,7 @@ set smartindent     "改行時インデント自動増減
 "autocmd FileType go autocmd BufWritePre <buffer> Fmt
 "setlocal omnifunc=syntaxcomplete#Complete
 
-"set termguicolors
-"autocmd ColorScheme * highlight Pmenu guibg=#b4009e
+set termguicolors
+autocmd ColorScheme * highlight Pmenu guibg=#b4009e
 colorscheme desert
 syntax on
