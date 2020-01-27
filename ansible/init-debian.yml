@@ -1,27 +1,11 @@
 - hosts: localhost
-  # become: yes
   connection: local
   tasks:
-    #- name: set locale
-    #  locale_gen:
-    #    name: ja_JP.UTF-8
-    #    state: present
-    #- name: set timezone
-    #  timezone:
-    #    name: Asia/Tokyo
-    #- name: set password
-    #  user:
-    #    name: pi
-    #    password: $6$H1HcEojD$tcdkyasrwQx5fHuq2X0ooD8q55zzrJ62OZaZ8sbrzr0y26b/FDANilaKRj456ACDrSQfN2.NwVrgweyzLy8gt/
-    #- name: enable ssh
-    #  command: raspi-config nonint do_ssh 1
-    #- name: enable CUI
-    #  command: raspi-config nonint do_boot_behaviour B1
-    
+
   # sync ntp befor apt-get
   # - name: Copy systemd-timesyncd
   #   copy:
-  #     src: /opt/daron/ansible/files/etc/systemd/timesyncd.conf
+  #     src: {{ ansible_facts['env']['HOME'] }}/dotfiles/ansible/files/etc/systemd/timesyncd.conf
   #     dest: /etc/systemd/timesyncd.conf
   #     backup: yes
   # - name: restart systemd-timesyncd
@@ -33,169 +17,56 @@
   # Copy apt settings
   #- name: Copy /etc/apt/sources.list
   #  copy:
-  #    src: /opt/daron/ansible/files/etc/apt/sources.list
+  #    src: {{ ansible_facts['env']['HOME'] }}/dotfiles/ansible/files/etc/apt/sources.list
   #    dest: /etc/apt/sources.list
   #    backup: yes
-  # apt-get install
-  #- name: install ftp (for backup)
-  #- apt:
-  #    name: ftp
-  #    state: present
 
+  - apt: name={{ item.name }} state=present
+    become: yes
+    loop:
+      # cui for japanease
+      - { name: fbterm }
+      - { name: uim-fep }
+      - { name: uim-mozc }
+      # command
+      - { name: curl }
+      - { name: git }
+      - { name: nodejs }
+      - { name: tmux }
+      - { name: ripgrep }
+      - { name: fzf }
+        #- { name: rsync }
+        #- { name: gawk }
+        #- { name: busybox }
+        #- { name: bindfs }
+      # gui
+      - { name: xinit }
+      - { name: i3 }
+      - { name: rxvt-unicode }
+      - { name: x11-xserver-utils }
 
-
-
-
-
-
-  - action: apt name=curl state=present
-    become: yes
-  - action: apt name=git state=present
-    become: yes
-  - action: apt name=node state=present
-    become: yes
-  - action: apt name=fbterm state=present
-    become: yes
-  - action: apt name=uim-fep state=present
-    become: yes
-  - action: apt name=uim-mozc state=present
-    become: yes
-  - action: apt name=tmux state=present
-    become: yes
-  - action: apt name=xinit state=present
-    become: yes
-  - action: apt name=i3 state=present
-    become: yes
-  - action: apt name=x11-xserver-utils state=present
-    become: yes
-  - action: apt name=rxvt-unicode state=present
-    become: yes
-  - ation: apt name=ripgrep state=present
-    become: yes
-  - action: apt name=fzf state=present
-    become: yes
-  - action: apt name=tmux state=present
-    become: yes
-  - action: apt name=rxvt-unicode state=present
-    become: yes
-
-  # for read_only
-  #- name: install rsync
-  #  apt:
-  #    name: rsync
-  #    state: present
-  #- name: install gawk
-  #  apt:
-  #    name: gawk
-  #    state: present
-  #- name: install busybox
-  #  apt:
-  #    name: busybox
-  #    state: present
-  #- name: install bindfs
-  #  apt:
-  #    name: bindfs
-  #    state: present
+  - file:
+      src: "{{ ansible_facts['env']['HOME'] }}/dotfiles/{{ item.src }}"
+      dest: "{{ ansible_facts['env']['HOME'] }}/{{ item.dest }}"
+      state: link
+    loop:
+      - { src: '.Xresources', dest: '.Xresources' }
+      - { src: '.uim', dest: '.uim' }
 
   # Copy settings
   #- name: Copy keyboard
   #  copy:
-  #    src: /opt/daron/ansible/files/etc/default/keyboard
+  #    src: {{ ansible_facts['env']['HOME'] }}/dotfiles/ansible/files/etc/default/keyboard
   #    dest: /etc/default/keyboard
   #    backup: yes
   #- name: Copy dhcpcd.conf
   #  copy:
-  #    src: /opt/daron/ansible/files/etc/dhcpcd.conf
+  #    src: {{ ansible_facts['env']['HOME'] }}/dotfiles/ansible/files/etc/dhcpcd.conf
   #    dest: /etc/dhcpcd.conf
   #    backup: yes
-  #- name: Copy ntpdate
-  #  copy:
-  #    src: /opt/daron/ansible/files/etc/default/ntpdate
-  #    dest: /etc/default/ntpdate
-  #    backup: yes
-  #- name: Copy ntpdate.service
-  #  copy:
-  #    src: /opt/daron/ansible/files/lib/systemd/system/ntpdate.service
-  #    dest: /lib/systemd/system/ntpdate.service
-  #    backup: yes
-  #- name: restart ntpdate
-  #  systemd:
-  #    state: restarted
-  #    daemon_reload: yes
-  #    name: ntpdate
   #- name: Copy wpa_supplicant.conf (Wi-Fi)
   #  copy:
-  #    src: /opt/daron/ansible/files/etc/wpa_supplicant/wpa_supplicant.conf
+  #    src: {{ ansible_facts['env']['HOME'] }}/dotfiles/ansible/files/etc/wpa_supplicant/wpa_supplicant.conf
   #    dest: /etc/wpa_supplicant/wpa_supplicant.conf
   #    backup: yes
-  #- name: Copy default.pa (PulseAudio)
-  #  copy:
-  #    src: /opt/daron/ansible/files/etc/pulse/default.pa
-  #    dest: /etc/pulse/default.pa
-  #    backup: yes
-  #- name: Copy ssh_config
-  #  copy:
-  #    src: /opt/daron/ansible/files/etc/ssh/ssh_config
-  #    dest: /etc/ssh/ssh_config
-  #    backup: yes
-  #- name: start ssh
-  #  systemd:
-  #    state: started
-  #    enabled: True
-  #    daemon_reload: yes
-  #    name: ssh
-  #- name: make backup directory
-  #  file:
-  #    path: /opt/daron/ansible/backup/boot
-  #    state: directory
-  #    mode: 0755
-  #- name: backup config.txt
-  #  copy:
-  #    src: /boot/config.txt
-  #    dest: /opt/daron/ansible/backup/boot/config.txt
-  #    remote_src: yes
-  #    force: no
-  #- name: Copy config.txt(set hdmi_force_hotplug net.ifnames)
-  #  copy:
-  #    src: /opt/daron/ansible/files/boot/config.txt
-  #    dest: /boot/config.txt
-  #    backup: no
-
-  ## copy read only settings
-  #- name: backup cmdline.txt
-  #  copy:
-  #    src: /boot/cmdline.txt
-  #    dest: /opt/daron/ansible/backup/boot/cmdline.txt
-  #    remote_src: yes
-  #    force: no
-  #- name: Copy cmdline.txt (set /dev/mmcblk0p2)
-  #  copy:
-  #    src: /opt/daron/ansible/files/boot/cmdline.txt
-  #    dest: /boot/cmdline.txt
-  #    backup: no
-  #- name: Copy fstab
-  #  copy:
-  #    src: /opt/daron/ansible/files/etc/fstab
-  #    dest: /etc/fstab
-  #    backup: yes
-
-  ## install pi-scripts
-  #- name: install pi-scripts
-  -  git:
-      repo: https://github.com/yuru7/HackGen.git
-      dest: ansible_facts['env']['USER']/dotfiles/tmp/HackGen
-  #- name: git filemode settings
-  #  git_config:
-  #    name: core.filemode
-  #    repo: /opt/daron/pi-scripts
-  #    scope: local
-  #    value: false
-  #- name: change permissions
-  #  file:
-  #    path: /opt/daron/pi-scripts
-  #    state: directory
-  #    owner: pi
-  #    group: pi
-  #    mode: 0755
-  #    recurse: yes
 
