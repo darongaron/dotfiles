@@ -3,3 +3,5 @@
 .vim/bundles/
 .vim/view/
 .vim/.netrwhist
+tmp/
+*.retry
