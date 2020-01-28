@@ -44,14 +44,64 @@
       - { name: i3 }
       - { name: rxvt-unicode }
       - { name: x11-xserver-utils }
+    tags: apt
 
+  # gui
   - file:
-      src: "{{ ansible_facts['env']['HOME'] }}/dotfiles/{{ item.src }}"
-      dest: "{{ ansible_facts['env']['HOME'] }}/{{ item.dest }}"
+      src: "{{ ansible_facts['user_dir'] }}/dotfiles/{{ item.src }}"
+      dest: "{{ ansible_facts['user_dir'] }}/{{ item.dest }}"
       state: link
     loop:
       - { src: '.Xresources', dest: '.Xresources' }
       - { src: '.uim', dest: '.uim' }
+      - { src: '.xsessionrc', dest: '.xsessionrc' }
+    tags: gui
+
+  # font
+  - git:
+      repo: https://github.com/yuru7/HackGen.git
+      dest: "{{ansible_facts['user_dir']}}/dotfiles/tmp/HackGen"
+      depth: 1
+      update: no
+    tags: font
+  - file:
+     src: "{{ansible_facts['user_dir']}}/dotfiles/tmp/HackGen/build"
+     dest: "{{ansible_facts['user_dir']}}/.fonts"
+     state: link
+    tags: font
+
+  # vim
+  ## vim-plug
+  - git:
+      repo: https://github.com/junegunn/vim-plug.git
+      dest: "{{ansible_facts['user_dir']}}/dotfiles/tmp/vim-plug"
+      depth: 1
+      update: no
+    tags: vim
+  - file:
+      path: "{{ansible_facts['user_dir']}}/.local/share/nvim/site/autoload/"
+      state: directory
+    tags: vim
+  - file:
+     src: "{{ansible_facts['user_dir']}}/dotfiles/tmp/vim-plug/plug.vim"
+     dest: "{{ansible_facts['user_dir']}}/.local/share/nvim/site/autoload/plug.vim"
+     state: link
+    tags: vim
+  ## ap_dark8
+  - git:
+      repo: https://github.com/apribase/ap_dark8.git
+      dest: "{{ansible_facts['user_dir']}}/dotfiles/tmp/ap_dark8"
+    tags: vim
+  - file:
+      path: "{{ansible_facts['user_dir']}}/.local/share/nvim/site/colors/"
+      state: directory
+    tags: vim
+  - file:
+     src: "{{ansible_facts['user_dir']}}/dotfiles/tmp/ap_dark8/ap_dark8.vim"
+     dest: "{{ansible_facts['user_dir']}}/.local/share/nvim/site/colors/ap_dark8.vim"
+     state: link
+    tags: vim
+
 
   # Copy settings
   #- name: Copy keyboard
