@@ -1,6 +1,41 @@
 (define default-im-name 'mozc)
-(define-key generic-on-key? '("zenkaku_hankaku" "<Control>j" "Henkan_Mode"))
-(define-key generic-off-key? '("zenkaku_hankaku" "<Control>j" "Muhenkan"))
+
+(define mozc-on-key '(generic-on-key))
+(define mozc-on-key? (make-key-predicate '(generic-on-key?)))
+;;(define-key generic-on-key? '("zenkaku_hankaku" "<Control>j" "Henkan_Mode"))
+;;(define-key generic-off-key? '("zenkaku_hankaku" "<Control>j" "Muhenkan"))
+(define generic-on-key '("zenkaku-hankaku" "<Shift> " "<Control>j" "Henkan_Mode"))
+(define generic-on-key? (make-key-predicate '("zenkaku-hankaku" "<Shift> " "<Control>j" "Henkan_Mode")))
+(define generic-off-key '("zenkaku-hankaku" "<Shift> " "<Control>j" "Muhenkan"))
+(define generic-off-key? (make-key-predicate '("zenkaku-hankaku" "<Shift> " "<Control>j" "Muhenkan")))
+
 (define uim-xim-use-xft-font? #t)
-;; (define uim-xim-xft-font-name "Ricty Diminished")
-(define uim-xim-xft-font-name "Noto Sans Mono CJK JP")
+(define uim-xim-xft-font-name "HackGen Console")
+
+;;(define toolbar-display-time 'never)
+(define toolbar-display-time 3)
+
+;;(define toolbar-icon-for-dark-background? #t)
+
+
+;;(define custom-activate-default-im-name? #f)
+;;(define custom-preserved-default-im-name 'direct)
+;;(define default-im-name #f)
+;;(define enabled-im-list '(mozc))
+;;(define enable-im-switch? #f)
+;;(define switch-im-key '("<Control>Shift_key" "<Shift>Control_key"))
+;;(define switch-im-key? (make-key-predicate '("<Control>Shift_key" "<Shift>Control_key")))
+;;(define switch-im-skip-direct-im? #f)
+;;(define enable-im-toggle? #t)
+;;(define toggle-im-key '("<Meta> "))
+;;(define toggle-im-key? (make-key-predicate '("<Meta> ")))
+;;(define toggle-im-alt-im 'direct)
+;;(define uim-color 'uim-color-uim)
+
+;;(define candidate-window-style 'horizontal)
+;;(define candidate-window-position 'caret)
+(define enable-lazy-loading? #t)
+(define bridge-show-input-state? #t)
+(define bridge-show-with? 'time)
+(define bridge-show-input-state-time-length 3)
+
