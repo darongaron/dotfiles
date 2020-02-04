@@ -31,7 +31,9 @@
       # command
       - { name: curl }
       - { name: git }
+      - { name: neovim }
       - { name: nodejs }
+      - { name: npm }
       - { name: tmux }
       - { name: ripgrep }
       - { name: fzf }
@@ -76,37 +78,35 @@
     tags: font
 
   # vim
-  ## vim-plug
+  ## git
   - git:
-      repo: https://github.com/junegunn/vim-plug.git
-      dest: "{{ansible_facts['user_dir']}}/dotfiles/tmp/vim-plug"
+      repo: "{{ item.repo }}"
+      dest: "{{ansible_facts['user_dir']}}/dotfiles/{{ item.dest }}"
       depth: 1
       update: no
+    loop:
+      - { repo: 'https://github.com/junegunn/vim-plug.git', dest: 'tmp/vim-plug' }
+      - { repo: 'https://github.com/apribase/ap_dark8.git', dest: 'tmp/ap_dark8' }
     tags: vim
+  ## dir
   - file:
-      path: "{{ansible_facts['user_dir']}}/.local/share/nvim/site/autoload/"
+      path: "{{ansible_facts['user_dir']}}/{{ item.path }}"
       state: directory
+    loop:
+      - { path: '.local/share/nvim/site/colors/' }
+      - { path: '.local/share/nvim/site/autoload/' }
+      - { path: '.config/nvim/' }
     tags: vim
+  ## link
   - file:
-     src: "{{ansible_facts['user_dir']}}/dotfiles/tmp/vim-plug/plug.vim"
-     dest: "{{ansible_facts['user_dir']}}/.local/share/nvim/site/autoload/plug.vim"
+     src: "{{ansible_facts['user_dir']}}/dotfiles/{{ item.src }}"
+     dest: "{{ansible_facts['user_dir']}}/{{ item.dest }}"
      state: link
+    loop:
+      - { src: 'tmp/vim-plug/plug.vim', dest: '.local/share/nvim/site/autoload/plug.vim' }
+      - { src: 'tmp/ap_dark8/ap_dark8.vim', dest: '.local/share/nvim/site/colors/ap_dark8.vim' }
+      - { src: 'init.vim', dest: '.config/nvim/init.vim' }
     tags: vim
-  ## ap_dark8
-  - git:
-      repo: https://github.com/apribase/ap_dark8.git
-      dest: "{{ansible_facts['user_dir']}}/dotfiles/tmp/ap_dark8"
-    tags: vim
-  - file:
-      path: "{{ansible_facts['user_dir']}}/.local/share/nvim/site/colors/"
-      state: directory
-    tags: vim
-  - file:
-     src: "{{ansible_facts['user_dir']}}/dotfiles/tmp/ap_dark8/ap_dark8.vim"
-     dest: "{{ansible_facts['user_dir']}}/.local/share/nvim/site/colors/ap_dark8.vim"
-     state: link
-    tags: vim
-
 
   # Copy settings
   #- name: Copy keyboard
