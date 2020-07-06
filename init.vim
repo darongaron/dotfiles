@@ -51,8 +51,11 @@ call plug#begin()
   Plug 'leafgarland/typescript-vim'
 call plug#end()
 
-"fzf
+"Plugin setting----------------------------------
+let g:user_emmet_settings = { 'lang' : 'ja' }
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-lists', 'coc-python', 'coc-phpls', 'coc-rust-analyzer']
 nnoremap <C-p> :Files<CR>
+"End scripts setting------------------------------
 
 set completeopt=noinsert,menuone,noselect
 
