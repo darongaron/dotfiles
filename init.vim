@@ -63,9 +63,10 @@ set softtabstop=2   "タブキー・バックスペースキー幅
 set autoindent      "改行時のインデント継続
 set smartindent     "改行時インデント自動増減
 
-augroup fileTypeIndent
+augroup fileTypeConf
     autocmd!
     autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd fileTypeConf BufWinEnter *.txt setlocal filetype=dokuwiki
 augroup END
 
 set termguicolors
