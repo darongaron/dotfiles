@@ -39,23 +39,15 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 "autocmd CursorHold * silent call CocActionAsync('highlight')
 " ---- end for coc 
-"
 
-" eskk ----------
-let g:eskk#directory = '~/eskk'
-let g:eskk#dictionary = {'path': '~/.eskk/skk','sorted': 0,'encoding': 'utf-8'}
-let g:eskk#large_dictionary = {'path': '~/.eskk/SKK-JISYO.L','sorted': 1,'encoding': 'utf-8'}
-" end eskk ----------
 
-"
-"augroup vimrc "autocmd初期化2重実行対策
-"  autocmd!
-"augroup END
+augroup MyVimrc
+  autocmd!
+augroup END
 
 call plug#begin('~/.vim/plugged')
     Plug 'mattn/emmet-vim'
     Plug 'tpope/vim-surround'
-    Plug 'tyru/eskk.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
     Plug 'junegunn/fzf.vim'
@@ -69,6 +61,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nblock/vim-dokuwiki'
     Plug 'cespare/vim-toml'
     Plug 'tpope/vim-dadbod'
+    Plug 'chriskempson/base16-vim'
 call plug#end()
 
 "add plubin start-------------
@@ -93,7 +86,7 @@ set backupdir=$HOME/.vim_tmp
 set directory=$HOME/.vim_tmp
 set undodir=$HOME/.vim_tmp
 
-""エラー表示
+" error output
 "set verbosefile=$HOME/.vim_tmp/vim.log
 "set verbose=20
 
@@ -109,23 +102,28 @@ set softtabstop=2   "タブキー・バックスペースキー幅
 set autoindent      "改行時のインデント継続
 set smartindent     "改行時インデント自動増減
 
-augroup fileTypeConf
-    autocmd!
-    autocmd fileTypeConf BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
-    autocmd fileTypeConf FileType go setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
-    autocmd fileTypeConf BufWinEnter *.txt setlocal filetype=dokuwiki
+augroup MyVimrc
+    autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd FileType go setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+    autocmd BufWinEnter *.txt setlocal filetype=dokuwiki
+    "autocmd FileType go autocmd BufWritePre <buffer> Fmt
+    "autocmd FileType json syntax match Comment +\/\/.\+$+
 augroup END
 
-"autocmd FileType go autocmd BufWritePre <buffer> Fmt
 "setlocal omnifunc=syntaxcomplete#Complete
 
-" パワーシェルをデフォルト
-" set shell=powershell shellquote=( shellpipe=\| shellredir=> shellxquote=
-" set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
-set termguicolors "24ビットカラー
-autocmd ColorScheme * highlight Pmenu guibg=#b4009e
-colorscheme desert
+set termguicolors "24bit color
 
-autocmd FileType json syntax match Comment +\/\/.\+$+
+" light
+" colorscheme base16-brushtrees
+" colorscheme base16-harmonic-light
+" dark
+" colorscheme base16-ocean
+" colorscheme base16-flat
+" colorscheme base16-brushtrees-dark
+" colorscheme base16-dracula
+" colorscheme base16-unikitty-dark
+colorscheme base16-tomorrow-night-eighties
+
 
 syntax on
